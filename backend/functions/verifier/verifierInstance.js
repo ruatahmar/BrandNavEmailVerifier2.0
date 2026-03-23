@@ -31,12 +31,12 @@ class VerifierInstance {
 		workerData?.index === 0
 			? winston.loggers.get(loggerTypes.verifier0)
 			: workerData?.index === 1
-			? winston.loggers.get(loggerTypes.verifier1)
-			: workerData?.index === 2
-			? winston.loggers.get(loggerTypes.verifier2)
-			: workerData?.index === 3
-			? winston.loggers.get(loggerTypes.verifier3)
-			: winston.loggers.get(loggerTypes.verifier);
+				? winston.loggers.get(loggerTypes.verifier1)
+				: workerData?.index === 2
+					? winston.loggers.get(loggerTypes.verifier2)
+					: workerData?.index === 3
+						? winston.loggers.get(loggerTypes.verifier3)
+						: winston.loggers.get(loggerTypes.verifier);
 	/** @private {import("worker_threads").MessagePort | null} Message port to connect to parent */
 	parentPort;
 
@@ -508,11 +508,11 @@ class VerifierInstance {
 			finalResult.set(email, {
 				email,
 				smtp: {
-					host_exists: false,
+					host_exists: true,  //changed dummy info to these 
+					disabled: true,		//this makes it so they go into unverifiable instead of invalid 
 					full_inbox: false,
 					catch_all: false,
 					deliverable: false,
-					disabled: false,
 				},
 				error: false,
 				error_msg: '',
